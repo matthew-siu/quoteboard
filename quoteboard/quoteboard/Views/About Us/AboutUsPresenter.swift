@@ -1,0 +1,27 @@
+//
+//  AboutUsPresenter.swift
+//  quoteboard
+//
+//  Created by Matthew Siu on 27/6/2022.
+//  Copyright © 2022 ___ORGANIZATIONNAME___. All rights reserved.
+//
+
+import UIKit
+
+// MARK: - Presentation logic goes here
+protocol AboutUsPresentationLogic
+{
+
+}
+
+// MARK: - Presenter main body
+class AboutUsPresenter: AboutUsPresentationLogic
+{
+    weak var viewController: AboutUsDisplayLogic?
+    
+}
+
+// MARK: - Presentation receiver
+extension AboutUsPresenter {
+
+}

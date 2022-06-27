@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kZl-uh-9ac" customClass="QuoteTableViewHeader" customModule="quoteboard" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-Gc-BQO">
+                    <rect key="frame" x="20" y="14.5" width="340" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-Ld-Vpv">
+                    <rect key="frame" x="370" y="13" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="aDK-oi-7Ub"/>
+                        <constraint firstAttribute="width" constant="24" id="q3C-Kz-jHM"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="pencil"/>
+                    <connections>
+                        <action selector="editBtnDidPress:" destination="-1" eventType="touchUpInside" id="iHL-Uf-TYP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="ZLG-WA-2Vn"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4zV-Ld-Vpv" secondAttribute="trailing" constant="20" id="ID4-SI-yhj"/>
+                <constraint firstItem="BzQ-Gc-BQO" firstAttribute="leading" secondItem="kZl-uh-9ac" secondAttribute="leading" constant="20" id="iGw-0a-VJM"/>
+                <constraint firstItem="BzQ-Gc-BQO" firstAttribute="centerY" secondItem="kZl-uh-9ac" secondAttribute="centerY" id="pgk-9H-k2k"/>
+                <constraint firstItem="4zV-Ld-Vpv" firstAttribute="centerY" secondItem="kZl-uh-9ac" secondAttribute="centerY" id="xzj-HS-azC"/>
+                <constraint firstItem="4zV-Ld-Vpv" firstAttribute="leading" secondItem="BzQ-Gc-BQO" secondAttribute="trailing" constant="10" id="zdA-Cg-mEb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="groupNameLabel" destination="BzQ-Gc-BQO" id="lAl-Ta-Gb0"/>
+            </connections>
+            <point key="canvasLocation" x="-188.40579710144928" y="21.428571428571427"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pencil" width="64" height="64"/>
+    </resources>
+</document>
