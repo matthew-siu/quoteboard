@@ -34,7 +34,7 @@ class KeyboardViewController: UIInputViewController {
         // Perform custom UI setup here
         self.nextKeyboardButton = UIButton(type: .system)
 
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Chat is boring", comment: "Save your time on typing"), for: [])
+        self.nextKeyboardButton.setTitle(NSLocalizedString("Switch", comment: "Save your time on typing"), for: [])
         self.nextKeyboardButton.sizeToFit()
         self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -66,7 +66,7 @@ class KeyboardViewController: UIInputViewController {
         } else {
             textColor = UIColor.black
         }
-//        proxy.insertText("hello world")
+        
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
         
         if let selectedText = textDocumentProxy.selectedText{

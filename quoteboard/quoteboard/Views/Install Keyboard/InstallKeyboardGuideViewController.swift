@@ -62,6 +62,7 @@ extension InstallKeyboardGuideViewController {
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 80
         self.tableView.separatorStyle = .none
+        self.tableView.allowsSelection = false
         
         self.setupUI()
         
@@ -70,12 +71,15 @@ extension InstallKeyboardGuideViewController {
     func setupUI(){
         self.title = "Install Quote Keyboard"
         
-        self.goToAppSettingBtn.setTitle("Click here to open App settings", for: .normal)
-        self.goToAppSettingAltLabel.text = "The keyboard need your permission to access the pasteboard. You need to enable the \"Full Access\" for most features. \n\nWe do not collect or transmit any of your information to any parties."
-        
+        // 1
         self.goToKeybaordSettingBtn.setTitle("Click here to add our keyboard", for: .normal)
-        self.goToKeyboardSettingAltLabel.text = "Or manually open Setting > General > Keyboard > Keyboards > Click \"Add New Keyboard...\".\n\nChoose \"Quote Clipboard - Quoteboard\"."
+        self.goToKeyboardSettingAltLabel.text = "Or manually open Setting > General > Keyboard > Keyboards > Click \"Add New Keyboard...\".\n\nChoose \"Quote Clipboard - Quoteboard\".\n\nSelect \"Quote Clipboard - Quoteboard\" in keyboards list and enable \"Allow Full Access\"."
         
+        // 2
+        self.goToAppSettingBtn.setTitle("Click here to open App settings", for: .normal)
+        self.goToAppSettingAltLabel.text = "The keyboard need your permission to access the pasteboard. You need to enable the \"Allow Full Access\" for most features. \n\nWe do not collect or transmit any of your information to any parties."
+        
+        // 3
         self.openKeyboardLabel.text = "Enjoy!"
         self.openKeyboardDescriptionLabel.text = "Open keyboard in any textbox or chat. Switch to Quoteboard and save all reusable sentences!"
         

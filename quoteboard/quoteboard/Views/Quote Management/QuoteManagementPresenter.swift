@@ -11,26 +11,29 @@ import UIKit
 // MARK: - Presentation logic goes here
 protocol QuoteManagementPresentationLogic
 {
-    func displayInitialState(scenes: SavedScenes?, sentences: SavedSentences?)
+    func displayInitialState(scenes: SavedScenes, sentences: SavedSentences)
 }
 
 // MARK: - Presenter main body
 class QuoteManagementPresenter: QuoteManagementPresentationLogic
 {
+    
     weak var viewController: QuoteManagementDisplayLogic?
     
 }
 
 // MARK: - Presentation receiver
 extension QuoteManagementPresenter {
-    func displayInitialState(scenes: SavedScenes?, sentences: SavedSentences?){
-        print("total sentences: \(sentences?.count ?? 0)")
+    func displayInitialState(scenes: SavedScenes, sentences: SavedSentences){
+        print("total sentences: \(sentences.count)")
+        print("total scenes: \(scenes.count)")
         
         var list = [QuoteManagement.ViewModel.Scene]()
         for i in 0...10 {
-            print("making \(i)")
-            let groupName = scenes?.first(where: {$0.groupIndex == i})?.name ?? "Group \(i)"
-            let groupSentences = sentences?.filter({$0.groupId == i}) ?? []
+            let groupName = scenes.first(where: {$0.groupIndex == i})?.name ?? "Group \(i)"
+            var groupSentences = sentences.filter({$0.groupId == i})
+            groupSentences.sort(by: {$0.uts > $1.uts})
+            print("groupSentences at \(i) has \(groupSentences.count)")
             list.append(.init(index: i, sceneName: groupName, setences: groupSentences))
         }
         self.viewController?.displayInitialState(vm: .init(list: list))

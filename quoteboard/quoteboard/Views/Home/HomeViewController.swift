@@ -26,9 +26,10 @@ class HomeViewController: BaseViewController {
     var delegate: HomeViewDelegate?
     var source: Configs.Source = .keyboard
     var allSentenceList: SavedSentences = []
+    var allSceneList: SavedScenes = []
     var currentGroupId: Int = 0
     var sentenceList: SavedSentences{
-        return self.allSentenceList.filter({$0.groupId == currentGroupId})
+        return self.allSentenceList.filter({$0.groupId == currentGroupId}).sorted(by: {$0.uts > $1.uts})
     }
     
     override func viewDidLoad() {
@@ -72,11 +73,33 @@ class HomeViewController: BaseViewController {
         
     }
     
+    @IBAction func goToAppBtnDidPress(_ sender: Any) {
+//        guard let url = URL(string: Configs.Info.appLink) else { return }
+//        self.openURL(url: url as NSURL)
+        self.redirectToHostApp()
+        
+    }
+    
+    func redirectToHostApp() {
+
+        let url = URL(string: Configs.Info.appLink)
+        var responder = self as UIResponder?
+        let selectorOpenURL = sel_registerName("openURL:")
+        while (responder != nil) {
+            if (responder?.responds(to: selectorOpenURL))! {
+                let _ = responder?.perform(selectorOpenURL, with: url)
+            }
+            responder = responder!.next
+        }
+        self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+    }
+    
     private func initUI(){
         self.horizontalLine.backgroundColor = .gray
         self.preSaveSentenceLabel.text = "Highlight your favourite words and save it!"
         self.preSaveSentenceLabel.textColor = .darkGray
         self.allSentenceList = self.getSentences()
+        self.allSceneList = self.getScenes()
         self.mainTableView.reloadData()
         self.rightBarTableView.selectRow(at: .init(row: 0, section: 0), animated: false, scrollPosition: .top)
         
@@ -112,7 +135,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
             view.textLabel?.text = sentenceList[indexPath.row].sentence
             view.textLabel?.numberOfLines = 2
         }else{
-            view.textLabel?.text = "Group \(indexPath.row)"
+            let groupName = self.allSceneList.first(where: {$0.groupIndex == indexPath.row})?.name ?? "Group \(indexPath.row)"
+            view.textLabel?.text = groupName
             view.backgroundColor = .darkGray
         }
         return view
@@ -131,11 +155,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-//        return tableView == self.mainTableView
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return nil
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -145,7 +164,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
                 self?.handleDelete(uuid: self?.sentenceList[indexPath.row].uts)
                 completionHandler(true)
             }
-            deleteBtn.image = UIImage(named: "bin")?.resized(toWidth: 32)
             deleteBtn.backgroundColor = .systemRed
             let configuration = UISwipeActionsConfiguration(actions: [deleteBtn])
             return configuration
@@ -175,11 +193,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension HomeViewController {
     func getSentences() -> SavedSentences{
-        if let sentences = Storage.getObject(suiteName: Configs.Env.AppGroup, Configs.Storage.sentences, to: SavedSentences.self){
-            print("sentences count = \(sentences.count)")
-            return sentences
-        }
-        return []
+        return SavedSentence.getAllSentences()
+    }
+    
+    func getScenes() -> SavedScenes{
+        return SavedScene.getAllScenes()
     }
     
     func saveSentence(sentence: String, groupId: Int? = nil){

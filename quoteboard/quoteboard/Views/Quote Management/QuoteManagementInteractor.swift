@@ -12,6 +12,11 @@ import UIKit
 protocol QuoteManagementBusinessLogic
 {
     func loadInitialState()
+    func addSentence(sentence: String, groupId: Int)
+    func updateSentence(old: SavedSentence, to sentence: String)
+    func moveSentence(old: SavedSentence, to index: Int)
+    func deleteSentence(sentence: SavedSentence)
+    func renameGroup(name: String, at index: Int)
 }
 
 // MARK: - Datas retain in interactor defines here
@@ -39,9 +44,28 @@ class QuoteManagementInteractor: QuoteManagementBusinessLogic, QuoteManagementDa
 // MARK: - Business
 extension QuoteManagementInteractor {
     func loadInitialState(){
-        let groups = Storage.getObject(suiteName: Configs.Env.AppGroup, Configs.Storage.groups, to: SavedScenes.self)
-        let sentences = Storage.getObject(suiteName: Configs.Env.AppGroup, Configs.Storage.sentences, to: SavedSentences.self)
-        
+        let groups = SavedScene.getAllScenes()
+        let sentences = SavedSentence.getAllSentences()
         self.presenter?.displayInitialState(scenes: groups, sentences: sentences)
+    }
+    
+    func addSentence(sentence: String, groupId: Int){
+        SavedSentence.addSentence(sentence: sentence, groupId: groupId)
+    }
+    
+    func updateSentence(old: SavedSentence, to sentence: String){
+        SavedSentence.updateSentence(old: old, to: sentence)
+    }
+    
+    func moveSentence(old: SavedSentence, to index: Int){
+        SavedSentence.moveSentence(old: old, to: index)
+    }
+    
+    func deleteSentence(sentence: SavedSentence){
+        SavedSentence.deleteSentence(sentence: sentence)
+    }
+    
+    func renameGroup(name: String, at index: Int){
+        SavedScene.renameScene(name: name, at: index)
     }
 }

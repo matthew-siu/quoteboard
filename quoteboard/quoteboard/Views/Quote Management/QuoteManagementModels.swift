@@ -13,12 +13,12 @@ import UIKit
 enum QuoteManagement
 {
     struct ViewModel {
-        let list: [Scene]
+        var list: [Scene]
         
         struct Scene{
             let index: Int
             let sceneName: String
-            let setences: SavedSentences
+            var setences: SavedSentences
         }
     }
 }

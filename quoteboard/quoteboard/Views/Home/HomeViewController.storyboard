@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -69,6 +70,21 @@
                                     <constraint firstAttribute="width" constant="100" id="Mtc-Ax-biU"/>
                                 </constraints>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rs-dp-c8Q">
+                                <rect key="frame" x="132" y="826" width="150" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="52X-hB-YRh"/>
+                                    <constraint firstAttribute="height" constant="31" id="hVP-df-uJB"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="pin"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go to App">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goToAppBtnDidPress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fVM-eT-g0z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,8 +97,10 @@
                             <constraint firstItem="36H-p7-Lht" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="diJ-QY-c0J"/>
                             <constraint firstItem="VvF-uz-hpg" firstAttribute="leading" secondItem="0yW-6I-ie4" secondAttribute="trailing" id="g3M-Fy-1ec"/>
                             <constraint firstItem="0yW-6I-ie4" firstAttribute="top" secondItem="36H-p7-Lht" secondAttribute="bottom" id="gSU-lj-pgR"/>
+                            <constraint firstItem="7rs-dp-c8Q" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="jXP-W7-zBD"/>
                             <constraint firstItem="VvF-uz-hpg" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="nVR-lW-5XF"/>
                             <constraint firstItem="36H-p7-Lht" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="rBz-Ik-1zZ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7rs-dp-c8Q" secondAttribute="bottom" constant="5" id="rf5-3c-jek"/>
                         </constraints>
                     </view>
                     <connections>

@@ -102,8 +102,8 @@ extension ViewController {
             let vc = QuoteManagementBuilder.createScene(request: request)
             self.navigationController?.pushViewController(vc, animated: true)
         }else if (indexPath.section == 2 && indexPath.row == 0){
-            let request = PlaygroundBuilder.BuildRequest()
-            let vc = PlaygroundBuilder.createScene(request: request)
+            let request = AboutUsBuilder.BuildRequest()
+            let vc = AboutUsBuilder.createScene(request: request)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
